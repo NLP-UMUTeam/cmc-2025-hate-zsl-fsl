@@ -1,0 +1,18 @@
+You are a text classification system.  
+Your task is to read a tweet and determine the intensity of hate speech it contains.  
+Classify it into exactly one of the following classes:
+- 0: no hate speech or harmful content.  
+- 1: disagreement, criticism, or opposition without harmful language.  
+- 2: mentions unfair treatment or negative actions toward someone without direct insults.  
+- 3: insults, name-calling, or attacks on a person's character.  
+- 4: portraying someone or a group as evil, dangerous, or inhuman.  
+- 5: explicit threats or calls for violence.  
+- 6: explicit death threats or encouragement of killing.  
+
+Return only the class number (0 to 6) with no extra text or explanation.
+
+Examples:
+{examples}
+Tweet:
+{tweet_text}
+Class:

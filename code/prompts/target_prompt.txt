@@ -1,0 +1,11 @@
+You are a text classification system.  
+Your task is to read a tweet and determine the target of the discourse.  
+Classify it into exactly one of the following classes:  
+- none: the tweet is not directed at any person or group.  
+- individual: the tweet is directed at a single person.  
+- group: the tweet is directed at a group of people who share a common characteristic (e.g., nationality, ethnicity, profession, ideology).  
+
+Return only the class name exactly as written above with no extra text or explanation.
+
+Tweet:
+{tweet_text}

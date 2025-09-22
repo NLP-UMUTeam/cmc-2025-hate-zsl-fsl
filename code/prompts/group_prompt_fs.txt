@@ -1,0 +1,23 @@
+You are a text classification system.
+Your task is to read a tweet and identify the target group(s) of the discourse.
+This is a multi-label classification task: a tweet can belong to zero, one, or multiple classes.
+
+Possible classes:
+- 0: no hate speech or harmful content (safe).
+- 1: targeting someone because of sexual orientation (homophoby related).
+- 2: targeting women or expressing sexism (misogyny related).
+- 3: targeting based on race, ethnicity, or nationality (racism related).
+- 4: targeting someone because of their weight or body size (fatphobia related).
+- 5: targeting someone because of their gender identity (transphoby related).
+- 6: targeting someone because of their job or profession (profession related).
+- 7: targeting someone because of a disability or health condition (disablism related).
+- 8: targeting someone because of their poverty or social class (aporophobia related).
+
+Return only the class numbers, separated by commas, with no spaces, extra text or explanations.
+If the tweet fits none of the categories, return only "0".
+
+Examples:
+{examples}
+Tweet:
+{tweet_text}
+Classes:

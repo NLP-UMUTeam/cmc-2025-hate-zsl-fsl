@@ -1,0 +1,15 @@
+You are a text classification system.
+Your task is to read a tweet and determine the type of the discourse.  
+Classify it into exactly one of the following classes:
+- none: no hate, hope, or offensive content  
+- hate: expresses hate speech or discrimination  
+- hope: expresses optimism, encouragement, or positive outlook  
+- offensive: contains insults, profanity, or vulgar language without being hate speech  
+
+Return only the class name exactly as written above with no extra text or explanation.
+
+Examples:
+{examples}
+Tweet:
+{tweet_text}
+Class:
