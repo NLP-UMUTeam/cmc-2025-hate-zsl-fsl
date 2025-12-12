@@ -1,4 +1,4 @@
-# Spanish-MaliciousHateSpeech
+# Spanish-HateSpeech-ICL-Evaluation
 ## Detection of Maliciously Disseminated Hate Speech in Spanish Using Fine-Tuning and In-Context Learning Techniques with Large Language Models  
 *(Accepted in CMC — Computers, Materials & Continua, 2025)*
 
