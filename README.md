@@ -71,13 +71,14 @@ This work is part of the research project **LaTe4PoliticES (PID2022-138099OB-I00
 A complete BibTeX citation will be added when the DOI is assigned.
 
 ```
-@article{pan2025iclmalicious,
-title={Detection of Maliciously Disseminated Hate Speech in Spanish Using Fine-Tuning and In-Context Learning Techniques with Large Language Models},
-author={Pan, Ronghao and Garcia-Diaz, Jose Antonio and Valencia-Garcia, Rafael},
-journal={CMC - Computers, Materials & Continua},
-year={2025},
-note={Accepted}
+@article{bernal2025malicioushatespeech,
+  title={Detection of Maliciously Disseminated Hate Speech in Spanish Using Fine-Tuning and In-Context Learning Techniques with Large Language Models},
+  author={Bernal-Beltr{\'a}n, Tom{\'a}s and Pan, Ronghao and Garc{\'\i}a-D{\'\i}az, Jos{\'e} Antonio and Salas-Z{\'a}rate, Mar{\'\i}a del Pilar and Paredes-Valverde, Mario Andr{\'e}s and Valencia-Garc{\'\i}a, Rafael},
+  journal={CMC -- Computers, Materials \& Continua},
+  year={2025},
+  note={Accepted}
 }
+
 ```
 
 
