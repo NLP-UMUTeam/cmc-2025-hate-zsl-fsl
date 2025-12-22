@@ -11,6 +11,8 @@ import pandas as pd
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 
+DATA_PATH = "XXXXX"
+
 SEED = 42
 
 # Set seed for reproducibility
@@ -55,7 +57,7 @@ elif args.m == 9:
     model_path = "mistralai/Mistral-7B-Instruct-v0.3"
     model_name = "mistral"
 
-data = pd.read_csv("/data/tomas/hate/dataset.csv")
+data = pd.read_csv(DATA_PATH)
 
 data_train = data[data['__split'] == 'train']
 data_test = data[data['__split'] == 'test']
@@ -74,20 +76,20 @@ if __name__ == '__main__':
         ) 
 
         model = AutoModelForCausalLM.from_pretrained(
-            "/data/tomas/models/" + model_name,
+            model_path,
             quantization_config=bnb_config,
             device_map="auto"
         )
     
     else:
-        model = AutoModelForCausalLM.from_pretrained("/data/tomas/models/" + model_name, device_map="auto")
+        model = AutoModelForCausalLM.from_pretrained(model_path, device_map="auto")
 
-    tokenizer = AutoTokenizer.from_pretrained("/data/tomas/models/" + model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
 
     examples = data_train.sample(n=5, random_state=SEED)
 
     # Charging prompts
-    with open("/data/tomas/hate/prompts/label_prompt_fs.txt", "r", encoding="utf-8") as f:
+    with open("prompts/label_prompt_fs.txt", "r", encoding="utf-8") as f:
         label_prompt = f.read()
 
         examples_text = ""
@@ -98,7 +100,7 @@ if __name__ == '__main__':
 
         label_prompt = label_prompt.replace("{examples}", examples_text)
     
-    with open("/data/tomas/hate/prompts/target_prompt_fs.txt", "r", encoding="utf-8") as f:
+    with open("prompts/target_prompt_fs.txt", "r", encoding="utf-8") as f:
         target_prompt = f.read()
 
         examples_text = ""
@@ -109,7 +111,7 @@ if __name__ == '__main__':
 
         target_prompt = target_prompt.replace("{examples}", examples_text)
 
-    with open("/data/tomas/hate/prompts/intensity_prompt_fs.txt", "r", encoding="utf-8") as f:
+    with open("prompts/intensity_prompt_fs.txt", "r", encoding="utf-8") as f:
         intensity_prompt = f.read()
 
         examples_text = ""
@@ -120,7 +122,7 @@ if __name__ == '__main__':
 
         intensity_prompt = intensity_prompt.replace("{examples}", examples_text)
 
-    with open("/data/tomas/hate/prompts/group_prompt_fs.txt", "r", encoding="utf-8") as f:
+    with open("prompts/group_prompt_fs.txt", "r", encoding="utf-8") as f:
         group_prompt = f.read()
 
         label2id = {"safe": 0, "homophoby-related": 1, "misogyny-related": 2, "racism-related": 3, "fatphobia-related": 4, "transphoby-related": 5, "profession-related": 6, "disablism-related": 7, "aporophobia-related": 8}
@@ -143,7 +145,7 @@ if __name__ == '__main__':
 
     initial_prompts = [label_prompt, target_prompt, intensity_prompt, group_prompt]
 
-    with open("/data/tomas/hate/results/fs/" + model_name  + "_responses.csv", mode='w', newline='') as file:
+    with open("results/fs/" + model_name  + "_responses.csv", mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["twitter_id", "label", "target", "intensity", "group"])
 
@@ -317,7 +319,7 @@ if __name__ == '__main__':
             torch.cuda.empty_cache()
             gc.collect()
 
-        with open("/data/tomas/hate/results/fs/" + model_name  + "_responses.csv", mode='a', newline='') as file:
+        with open("results/fs/" + model_name  + "_responses.csv", mode='a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([row["twitter_id"]] + responses)
 

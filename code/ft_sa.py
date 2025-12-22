@@ -14,6 +14,8 @@ from transformers import DataCollatorWithPadding
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
+DATA_PATH = "XXXXX"
+
 SEED = 42
 
 # Set seed for reproducibility
@@ -30,27 +32,21 @@ args = parser.parse_args()
 
 if args.m == 0:
     model_path = "PlanTL-GOB-ES/roberta-base-bne" # MARIA
-    local_path = "/data/tomas/models/maria"
     model_name = "maria_ft"
 elif args.m == 1:
     model_path = "dccuchile/bert-base-spanish-wwm-uncased" # BETO UNCASED
-    local_path = "/data/tomas/models/beto_un"
     model_name = "beto_un_ft"
 elif args.m == 2:
     model_path = "dccuchile/bert-base-spanish-wwm-cased" # BETO CASED
-    local_path = "/data/tomas/models/beto_ca"
     model_name = "beto_ca_ft"
 elif args.m == 3:
     model_path = "bertin-project/bertin-roberta-base-spanish" # BERTIN
-    local_path = "/data/tomas/models/bertin"
     model_name = "bertin_ft"
 elif args.m == 4:
     model_path = "dccuchile/albert-base-spanish" # ALBETO
-    local_path = "/data/tomas/models/albeto"
     model_name = "albeto_ft"
 elif args.m == 5:
     model_path = "dccuchile/distilbert-base-spanish-uncased" # DISTILBETO
-    local_path = "/data/tomas/models/distilbeto"
     model_name = "distilbeto_ft"
 
 if args.t == 0:
@@ -85,7 +81,7 @@ elif args.t == 3:
     id2label = {0: "safe", 1: "homophoby-related", 2: "misogyny-related", 3: "racism-related", 4: "fatphobia-related", 5: "transphoby-related", 6: "profession-related", 7: "disablism-related", 8: "aporophobia-related"}
     label2id = {"safe": 0, "homophoby-related": 1, "misogyny-related": 2, "racism-related": 3, "fatphobia-related": 4, "transphoby-related": 5, "profession-related": 6, "disablism-related": 7, "aporophobia-related": 8}
 
-data = pd.read_csv("/data/tomas/hate/dataset.csv")
+data = pd.read_csv(DATA_PATH)
 
 if args.t != 3:
     data.loc[:, task_name] = data[task_name].map(label2id.get)
@@ -133,11 +129,11 @@ class TextDataset(Dataset):
 def model_init():
     
     if args.t == 3:
-        model = AutoModelForSequenceClassification.from_pretrained(local_path, 
+        model = AutoModelForSequenceClassification.from_pretrained(model_path, 
                                                                 num_labels=num_labels,
                                                                 problem_type="multi_label_classification")
     else:
-        model = AutoModelForSequenceClassification.from_pretrained(local_path, 
+        model = AutoModelForSequenceClassification.from_pretrained(model_path, 
                                                                 num_labels=num_labels,
                                                                 problem_type="single_label_classification")
         
@@ -147,7 +143,7 @@ def model_init():
     return model
 
 
-tokenizer = AutoTokenizer.from_pretrained(local_path)
+tokenizer = AutoTokenizer.from_pretrained(model_path)
 
 df_train = TextDataset(data_train["tweet_clean_lowercase"].tolist(), data_train[task_name].tolist(), tokenizer)
 df_eval = TextDataset(data_eval["tweet_clean_lowercase"].tolist(), data_eval[task_name].tolist(), tokenizer)
@@ -242,11 +238,11 @@ else:
     })
 
 
-df_preds.to_csv(f"/data/tomas/hate/results/ft/{model_name}_{task_name}_predictions.csv", index=False)
+df_preds.to_csv(f"results/ft/{model_name}_{task_name}_predictions.csv", index=False)
 
 metrics = compute_metrics(predictions)
 
-with open("/data/tomas/hate/results/ft/" + model_name + "_" + task_name + "_metrics.json", "w") as f:
+with open("results/ft/" + model_name + "_" + task_name + "_metrics.json", "w") as f:
     json.dump(metrics, f, indent=4)
 
 print("fin ft de " + model_name)
