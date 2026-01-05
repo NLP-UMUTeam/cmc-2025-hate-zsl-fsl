@@ -37,8 +37,15 @@
 
 
 ### Publication
-This work has been accepted for publication in **CMC - Computers, Materials & Continua (2025)**.  
-More information (DOI, volume, issue) will be added upon release. 
+This work has been accepted for publication in **CMC - Computers, Materials & Continua (2025)**.
+
+Journal: Tech Science Press
+
+Issue: Computers, Materials & Continua
+ 
+Published online: 04 January 2026
+
+Doi: 10.32604/cmc.2025.073629
 
 ---
 
@@ -94,15 +101,17 @@ This work is part of the research project **LaTe4PoliticES (PID2022-138099OB-I00
 
 
 ### Citation
-A complete BibTeX citation will be added when the DOI is assigned.
-
 ```
-@article{bernal2025malicioushatespeech,
-  title={Detection of Maliciously Disseminated Hate Speech in Spanish Using Fine-Tuning and In-Context Learning Techniques with Large Language Models},
-  author={Bernal-Beltr{\'a}n, Tom{\'a}s and Pan, Ronghao and Garc{\'\i}a-D{\'\i}az, Jos{\'e} Antonio and Salas-Z{\'a}rate, Mar{\'\i}a del Pilar and Paredes-Valverde, Mario Andr{\'e}s and Valencia-Garc{\'\i}a, Rafael},
-  journal={CMC -- Computers, Materials \& Continua},
-  year={2025},
-  note={Accepted}
+@article{cmc.2025.073629,
+AUTHOR = {Tomás Bernal-Beltrán, Ronghao Pan, José Antonio García-Díaz, María del Pilar Salas-Zárate, Mario Andrés Paredes-Valverde, Rafael Valencia-García},
+TITLE = {Detection of Maliciously Disseminated Hate Speech in Spanish Using Fine-Tuning and In-Context Learning Techniques with Large Language Models},
+JOURNAL = {Computers, Materials \& Continua},
+VOLUME = {},
+YEAR = {},
+NUMBER = {},
+URL = {http://www.techscience.com/cmc/online/detail/25472},
+ISSN = {1546-2226},
+DOI = {10.32604/cmc.2025.073629}
 }
 ```
 
